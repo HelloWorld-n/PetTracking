@@ -1,0 +1,129 @@
+
+$bg: #272822
+$fg: #F8F8F2
+$bg-plus: #373832
+$bg-key: #141511
+$table-align: 2px
+$font-main: 'IBM 3270', 'HackMono', 'UbuntuMono', 'Hack', 'Ubuntu Mono', 'Consolas', 'Monospace'
+$font-monospace: 'IBM 3270', 'HackMono', 'UbuntuMono', 'Hack', 'Ubuntu Mono', 'Consolas', 'Monospace'
+$red: #F92672
+$orange: #FD971F
+$orangish: #E69F66
+$yellow: #E6DB74
+$green: #A6E22E
+$blue: #66D9EB
+$purple: #AE81FF
+$gray: #88846A
+
+
+.success 
+	color: $green
+
+
+.failure 
+	color: $red
+
+a 
+	color: $blue
+
+body 
+	background-color: $bg
+	color: $fg
+
+button 
+	background-color: $bg
+	color: $fg
+
+textarea, input 
+	background-color: $bg-plus
+	color: $fg
+
+
+input[type="button"], input[type="submit"], button 
+	background-color: $bg-key
+
+
+@font-face 
+	font-family: 'Recursive'
+	src: url(../fonts/Recursive.ttf)
+
+@font-face 
+	font-family: 'UbuntuMono'
+	src: url(../fonts/UbuntuMono-Regular.ttf)
+
+@font-face 
+	font-family: 'HackMono'
+	src: url(../fonts/Hack-Regular.ttf)
+
+@font-face 
+	font-family: 'IBM 3270'
+	src: url(../fonts/3270.ttf)
+
+
+* 
+	font-family: $font-main
+
+code, code * 
+	font-family: $font-monospace
+
+
+code 
+	display: block
+	background: $bg
+	color: $fg
+	padding: 10px 16px
+	border-radius: 2px
+	-moz-box-shadow: inset 0 0 10px #000
+	box-shadow: inset 0 0 10px #000
+	counter-reset: line
+
+
+code span.line_number 
+	display: inline-block
+	line-height: 1.5rem
+	width: 4rem
+
+
+code span.line_number:before
+	counter-increment: line
+	content: counter(line)
+	display: inline-block
+	padding: 0 .5em
+	margin-right: .5em
+	color: #888
+
+table, td 
+	border-collapse: collapse
+	border: $fg 2px solid
+
+td 
+	padding: 10px
+
+table tbody tr 
+	align-items: stretch !important
+
+
+.content-hidden content 
+	display: none
+	visibility: hidden
+
+td.key 
+	text-align: left
+
+td.item table
+	margin-left: auto
+	margin-right: auto
+
+td.item 
+	text-align: center
+
+td.item table 
+	margin-left: $table-align
+	margin-right: auto
+
+td.value 
+	text-align: right
+
+td.value table 
+	margin-left: auto
+	margin-right: $table-align
