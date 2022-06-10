@@ -3,9 +3,9 @@ import pymysql, Connect
 from collections.abc import Iterable
 
 def cleanDatabaseTable(cursor, tableName, ids = None):
-	cursor.execute("""
+	cursor.execute(f"""
 		SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
-		WHERE TABLE_NAME = "missingPets" AND DATA_TYPE = "point"
+		WHERE TABLE_NAME = "{tableName}" AND DATA_TYPE = "point"
 	""")
 	mysqlType_point = list(map(lambda x: x["COLUMN_NAME"], cursor.fetchall()))
 	cursor.execute(f"CREATE TEMPORARY TABLE temp_{tableName} AS SELECT * FROM {tableName}")
