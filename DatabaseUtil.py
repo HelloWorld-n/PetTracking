@@ -1,5 +1,5 @@
 #!/bin/python3
-import pymysql, Connect
+import pymysql
 from collections.abc import Iterable
 
 def cleanDatabaseTable(cursor, tableName, ids = None):
