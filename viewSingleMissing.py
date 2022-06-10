@@ -109,17 +109,23 @@ if True:
 					else:
 						print("<h1 class=\"failure\">This account is not admin!</h1>")
 				
-				
-				cursor.execute("CREATE TEMPORARY TABLE temp_missingPets AS SELECT * FROM missingPets")
-				cursor.execute("ALTER TABLE temp_missingPets ADD COLUMN temp_locationLastSeen VarChar(16) AFTER locationLastSeen")
 				cursor.execute("""
-					UPDATE temp_missingPets 
-					SET temp_locationLastSeen = CONCAT(
-						"(", st_x(locationLastSeen), ", ", st_y(locationLastSeen), ")"
-					)
+					SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
+					WHERE TABLE_NAME = "missingPets" AND DATA_TYPE = "point"
 				""")
-				cursor.execute("ALTER TABLE temp_missingPets DROP COLUMN locationLastSeen")
-				cursor.execute("ALTER TABLE temp_missingPets RENAME COLUMN temp_locationLastSeen TO locationLastSeen")
+				mysqlType_point = list(map(lambda x: x["COLUMN_NAME"], cursor.fetchall()))
+				print(mysqlType_point)
+				cursor.execute("CREATE TEMPORARY TABLE temp_missingPets AS SELECT * FROM missingPets")
+				for item in mysqlType_point:
+					cursor.execute(f"ALTER TABLE temp_missingPets ADD COLUMN temp_{item} VarChar(16) AFTER {item}")
+					cursor.execute(f"""
+						UPDATE temp_missingPets 
+						SET temp_{item} = CONCAT(
+							"(", st_x({item}), ", ", st_y({item}), ")"
+						)
+					""")
+					cursor.execute(f"ALTER TABLE temp_missingPets DROP COLUMN {item}")
+					cursor.execute(f"ALTER TABLE temp_missingPets RENAME COLUMN temp_{item} TO {item}")
 				cursor.execute(
 					"SELECT * FROM temp_missingPets WHERE id=%s",
 					form["id"].value
