@@ -165,45 +165,46 @@ try:
 	dataAdmin = cursor.fetchall()
 	if len(dataAdmin) > 0:
 		isAdminAccount = True
-		print("""
+		print(f"""
 			<br>
 			<form id="alter" method="post" action="viewSingleMissing.py">
-				<input hidden name="id" value=\"""" + form["id"].value + """\">
+				<input hidden name="id" value=\"{form["id"].value}\">
 				<input hidden id="username" name="username">
 				<input hidden id="password" name="password">
 				<script> 
 
 					let data = CookieUtil.getCookie()
-					if(data["username"]){
+					if(data["username"]){{
 						document.querySelectorAll("form#alter #username")[0].value = CookieUtil.parseCookieText(data["username"])
 						document.querySelectorAll("form#alter #password")[0].value = CookieUtil.parseCookieText(data["password"])
-					}
+					}}
 				</script>
 				<div>
 					<textarea name="comment"></textarea>
 				</div>
 				<div>
-					Seen <input type="datetime-local" id="timeLastSeen" name="timeLastSeen" value=\""""
-						+ (
+					Seen <input type="datetime-local" id="timeLastSeen" name="timeLastSeen" value=\"{
+						(
 							str(theTime)
 						if theTime else
 							str(datetime.datetime.now().isoformat()) 
-						) + """\"/> 
+						)
+					}\"/>
 					at (
-						<input type="number" step="0.0001" id="locationLastSeen_posX" name="locationLastSeen_posX" value=\""""
-							+ (
+						<input type="number" step="0.0001" id="locationLastSeen_posX" name="locationLastSeen_posX" value=\"{
+							(
 								str(round(posX, 4))
 							if posX else 
 								"None"
-							) + """\"
-						/>, 
-						<input type="number" step="0.0001" id="locationLastSeen_posY" name="locationLastSeen_posY" value=\""""
-							+ (
+							)
+					}\"/>, 
+						<input type="number" step="0.0001" id="locationLastSeen_posY" name="locationLastSeen_posY" value=\"{
+							(
 								str(round(posY, 4))
 							if posY else 
 								"None" 
-							) + """\"
-						/>
+							)
+					}\"/>
 					)
 				</div>
 				<div>
