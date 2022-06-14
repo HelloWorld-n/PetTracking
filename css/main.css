@@ -4,8 +4,8 @@
 	--bg-plus: #373832;
 	--bg-key: #141511;
 	--table-align: 2px;
-	--font-main: 'IBM 3270', 'HackMono', 'UbuntuMono', 'Hack', 'Ubuntu Mono', 'Consolas', 'Monospace';
-	--font-monospace: 'IBM 3270', 'HackMono', 'UbuntuMono', 'Hack', 'Ubuntu Mono', 'Consolas', 'Monospace';
+	--font-main: "IBM 3270", "HackMono", "Hack", "Ubuntu Mono", "Consolas", "Monospace";
+	--font-monospace: "IBM 3270", "HackMono", "Hack", "Ubuntu Mono", "Consolas", "Monospace";
 	--red: #F92672;
 	--orange: #FD971F;
 	--orangish: #E69F66;
@@ -32,37 +32,42 @@ body {
 	background-color: var(--bg);
 	color: var(--fg);
 }
+
 button {
 	background-color: var(--bg);
 	color: var(--fg)
 }
-textarea, input {
+
+textarea,
+input {
 	background-color: var(--bg-plus);
 	color: var(--fg);
 }
 
-input[type="button"], input[type="submit"], button {
+input[type="button"],
+input[type="submit"],
+button {
 	background-color: var(--bg-key);
 }
 
 @font-face {
-	font-family: 'Recursive';
+	font-family: "Recursive";
 	src: url(../fonts/Recursive.ttf);
 }
 
 @font-face {
-	font-family: 'UbuntuMono';
+	font-family: "UbuntuMono";
 	src: url(../fonts/UbuntuMono-Regular.ttf);
 }
 
 @font-face {
-	font-family: 'HackMono';
+	font-family: "HackMono";
 	src: url(../fonts/Hack-Regular.ttf);
 }
 
 
 @font-face {
-	font-family: 'IBM 3270';
+	font-family: "IBM 3270";
 	src: url(../fonts/3270.ttf);
 }
 
@@ -70,7 +75,8 @@ input[type="button"], input[type="submit"], button {
 	font-family: var(--font-main);
 }
 
-code, code * {
+code,
+code * {
 	font-family: var(--font-monospace);
 }
 
@@ -100,7 +106,8 @@ code span.line_number:before {
 	color: #888;
 }
 
-table, td {
+table,
+td {
 	border-collapse: collapse;
 	border: var(--fg) 2px solid;
 }
