@@ -7,6 +7,7 @@ def cleanDatabaseTable(cursor, tableName, ids = None):
 		SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS 
 		WHERE TABLE_NAME = "{tableName}" AND DATA_TYPE = "point"
 	""")
+	
 	mysqlType_point = list(map(lambda x: x["COLUMN_NAME"], cursor.fetchall()))
 	cursor.execute(f"CREATE TEMPORARY TABLE temp_{tableName} AS SELECT * FROM {tableName}")
 	for item in mysqlType_point:
@@ -21,6 +22,7 @@ def cleanDatabaseTable(cursor, tableName, ids = None):
 		""")
 		cursor.execute(f"ALTER TABLE temp_{tableName} DROP COLUMN {item}")
 		cursor.execute(f"ALTER TABLE temp_{tableName} RENAME COLUMN temp_{item} TO {item}")
+
 	if ids == None:
 		cursor.execute(
 			f"SELECT * FROM temp_{tableName}", 
@@ -39,4 +41,3 @@ def cleanDatabaseTable(cursor, tableName, ids = None):
 	else:
 		raise KeyError(f"Arg `ids` type excepted in [NoneType, int, ∈collections.abs.Iterable], got {type(ids)}")
 	return cursor.fetchall()
-
