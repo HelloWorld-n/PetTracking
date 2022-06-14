@@ -12,7 +12,7 @@ def cleanDatabaseTable(cursor, tableName, ids = None):
 	cursor.execute(f"CREATE TEMPORARY TABLE temp_{tableName} AS SELECT * FROM {tableName}")
 	for item in mysqlType_point:
 		cursor.execute(f"""
-			ALTER TABLE temp_{tableName} ADD COLUMN temp_{item} VarChar(32) AFTER {item}
+			ALTER TABLE temp_{tableName} ADD COLUMN temp_{item} VarChar(64) AFTER {item}
 		""")
 		cursor.execute(f"""
 			UPDATE temp_{tableName} 
