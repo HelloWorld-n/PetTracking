@@ -35,10 +35,6 @@ print("""
 		<script src="js/CookieUtil.js"></script>
 		<title>missingPetCreator</title>
 	</head>
-<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
-      defer
-    ></script>
 	<body>
 		<h1><a href="index.py">Main</a> / <a href="viewMissing.py">View Missing Pets</a> / View Specific Pet</h1>
 """)
